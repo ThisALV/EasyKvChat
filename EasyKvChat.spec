@@ -29,7 +29,7 @@ exe = EXE(pyz,
           strip=False,
           upx=True,
           console=True)
-coll = COLLECT(exe, Tree("easykvchat"),
+coll = COLLECT(exe,
                a.binaries,
                a.zipfiles,
                a.datas,
