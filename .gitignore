@@ -1,0 +1,8 @@
+.vscode
+build
+dist
+__pycache__
+install
+*.egg-info
+.pypirc
+setup.py
