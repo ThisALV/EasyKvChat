@@ -9,6 +9,8 @@ import sys
 if "twisted.internet.reactor" in sys.modules:
     del sys.modules["twisted.internet.reactor"]
 
+kivy.support.install_twisted_reactor()
+
 from twisted.internet import protocol  # noqa: E402
 from twisted import protocols  # noqa: E402
 from twisted.protocols import basic  # noqa: E402
