@@ -7,3 +7,4 @@ install
 .pypirc
 setup.py
 /main.py
+kivycatalog.sh
