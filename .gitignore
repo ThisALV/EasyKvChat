@@ -6,5 +6,4 @@ install
 *.egg-info
 .pypirc
 setup.py
-/main.py
 kivycatalog.sh
