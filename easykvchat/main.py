@@ -10,6 +10,7 @@ class InvalidArguments(ValueError):
 
 
 def run(argv):
+    print("Argv :", argv)
     try:
         kivy.resources.resource_add_path(argv[0])
         print("Ressources :", kivy.resources.resource_paths)

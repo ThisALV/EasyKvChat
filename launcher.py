@@ -3,6 +3,7 @@ import sys
 import os
 
 args = []
+print("Args :", sys.argv)
 
 if len(sys.argv) > 1:
     args = sys.argv[1:]
