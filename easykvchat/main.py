@@ -1,5 +1,5 @@
-from easykvchat.server.app import ServerApp
-from easykvchat.client.app import ClientApp
+import kivy
+from kivy.lang.builder import Builder
 
 import sys
 import os
@@ -10,10 +10,14 @@ class InvalidArguments(ValueError):
 
 
 def run(argv):
-    os.chdir(os.path.dirname(os.path.realpath(__file__)))
-
     try:
-        if len(argv) < 2:
+        kivy.resources.resource_add_path(argv[0])
+        print("Ressources :", kivy.resources.resource_paths)
+
+        from easykvchat.server.app import ServerApp  # noqa E402
+        from easykvchat.client.app import ClientApp  # noqa E402
+
+        if len(argv) < 1:
             raise InvalidArguments()
 
         mode = argv[1]
@@ -31,7 +35,7 @@ def run(argv):
         else:
             raise InvalidArguments()
     except InvalidArguments as err:
-        print("Syntaxe : <mode: client|server> [port (mode serveur uniquement)]")
+        print("Syntaxe : <chemin des ressources> <mode: client|server> [port (mode serveur uniquement)]")
         return 2
 
     return 0

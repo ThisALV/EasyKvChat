@@ -1,8 +1,9 @@
-import easykvchat.server.network
+from easykvchat.server.network import ChatRoom
 from easykvchat.roomlogs import Message
 from easykvchat.memberspannel import MemberName
 
 import kivy
+from kivy.lang.builder import Builder
 from kivy.app import App
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
@@ -40,7 +41,7 @@ class ServerApp(App):
         super().__init__(**kwargs)
         self.port = port
 
-        self.room = easykvchat.server.network.ChatRoom()
+        self.room = ChatRoom()
         self.server = endpoints.TCP4ServerEndpoint(reactor, self.port)
         self.server.listen(self.room)
 
@@ -56,6 +57,9 @@ class ServerApp(App):
 
     def delMember(self, room, **args):
         self.root.delMember(room, **args)
+
+    def build(self):
+        return Builder.load_file("server.kv")
 
 
 if __name__ == "__main__":

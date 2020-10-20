@@ -1,8 +1,9 @@
-import easykvchat.client.network
+from easykvchat.client.network import SessionFactory
 from easykvchat.memberspannel import MemberName
 from easykvchat.roomlogs import Message
 
 import kivy
+from kivy.lang.builder import Builder
 from kivy.app import App
 from kivy.logger import Logger
 from kivy.uix.boxlayout import BoxLayout
@@ -18,6 +19,7 @@ from twisted.internet import endpoints
 from twisted.internet import reactor
 
 kivy.require("2.0.0")
+
 
 Window.minimum_width = mm(170)
 Window.minimum_height = mm(120)
@@ -152,7 +154,7 @@ class MainScreen(FloatLayout):
             ErrorPopup("Hôte invalide", str(err)).open()
             return
 
-        self.chat = easykvchat.client.network.SessionFactory(self.login.form.name.text)
+        self.chat = SessionFactory(self.login.form.name.text)
         self.client = endpoints.TCP4ClientEndpoint(reactor, host[0], port)
         self.client.connect(self.chat).addErrback(self.ioError)
 
@@ -219,6 +221,9 @@ class ClientApp(App):
     def on_start(self):
         super().on_start()
         self.root.dispatch("on_start")
+
+    def build(self):
+        return Builder.load_file("client.kv")
 
 
 if __name__ == "__main__":

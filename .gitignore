@@ -7,3 +7,4 @@ install
 .pypirc
 setup.py
 kivycatalog.sh
+EasyKvChat.spec
